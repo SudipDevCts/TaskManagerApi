@@ -67,7 +67,10 @@ namespace BusinessLayer
         
 
 
-
+        /// <summary>
+        /// To end a task
+        /// </summary>
+        /// <param name="task"></param>
         public void EndTask(TaskModel task)
         {
             Repository repository = new Repository();
