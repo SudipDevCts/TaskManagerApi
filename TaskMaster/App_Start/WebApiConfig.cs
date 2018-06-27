@@ -14,7 +14,7 @@ namespace TaskMaster
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", "*", "*"));
+            config.EnableCors(new EnableCorsAttribute("http://localhost", "*", "*"));
             config.Formatters.JsonFormatter.SupportedMediaTypes
     .Add(new MediaTypeHeaderValue("text/html"));
             // Web API routes
