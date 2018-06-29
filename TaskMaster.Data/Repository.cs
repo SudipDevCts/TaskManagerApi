@@ -8,7 +8,7 @@ using TaskMaster.Data;
 
 namespace TaskMaster.Data
 {
-    public class Repository
+    public class Repository: IRepository
     {
         public void AddTask(Task_Table task)
         {
@@ -64,8 +64,8 @@ namespace TaskMaster.Data
             }
 
 
-        }
-
+        }   
+            
         public bool IsTaskExists(string taskName)
         {
             using (var db = new TaskManagerEntities())

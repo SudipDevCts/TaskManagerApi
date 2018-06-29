@@ -8,9 +8,18 @@ namespace BusinessLayer
 {
     public class TaskManager
     {
+        private IRepository _repository;
+        public TaskManager()
+        {
+            _repository = new Repository();
+        }
+        public TaskManager(IRepository repository)
+        {
+            _repository = repository;
+        }
         public void AddTask(TaskModel taskDto)
         {
-            Repository repository = new Repository();
+            //Repository repository = new Repository();
             var task = new Task_Table();
             task.Task = taskDto.Task;
             if (!string.IsNullOrEmpty(taskDto.ParentTask))
@@ -24,14 +33,14 @@ namespace BusinessLayer
             task.Priority = taskDto.Priority;
             task.Start_Date = Convert.ToDateTime(taskDto.StartDate);
             task.End_Date = Convert.ToDateTime(taskDto.EndDate);
-            repository.AddTask(task);
+            _repository.AddTask(task);
         }
 
         public IList<TaskModel> GetTasks()
         {
-            Repository repository = new Repository();
+            //Repository repository = new Repository();
             var taskDtos = new List<TaskModel>();
-            var tasks = repository.GetTasks();
+            var tasks = _repository.GetTasks();
             foreach(var task in tasks)
             {
                 var taskDto = new TaskModel();
@@ -50,8 +59,8 @@ namespace BusinessLayer
 
         public TaskModel GetSpecificTask(int taskId)
         {
-            Repository repository = new Repository();
-            var task = repository.GetSpecificTask(taskId);
+            //Repository repository = new Repository();
+            var task = _repository.GetSpecificTask(taskId);
             var taskDto = new TaskModel()
             {
                 TaskId = task.Task_ID,
@@ -73,22 +82,23 @@ namespace BusinessLayer
         /// <param name="task"></param>
         public void EndTask(TaskModel task)
         {
-            Repository repository = new Repository();
-            repository.EndTask(task.TaskId);
+            //Repository repository = new Repository();
+            _repository.EndTask(task.TaskId);
 
         }
 
         public void UpdateTask(TaskModel task)
         {
-            Repository rep = new Repository();
-            rep.DeleteTask(task.TaskId);
+            //Repository rep = new Repository();
+            _repository.DeleteTask(task.TaskId);
             AddTask(task);
         }
 
         public bool IsTaskExist(string taskName)
         {
-            Repository rep = new Repository();
-            return rep.IsTaskExists(taskName);
+            //Repository rep = new Repository();
+
+            return _repository.IsTaskExists(taskName);
         }
     }
 }

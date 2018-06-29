@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepository.cs" />
     <Compile Include="ParentTask_Table.cs">
       <DependentUpon>TaskManager.tt</DependentUpon>
     </Compile>
