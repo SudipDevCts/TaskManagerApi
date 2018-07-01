@@ -9,7 +9,7 @@ using TaskMaster.Data;
 
 namespace TaskMaster.Data
 {
-    [ExcludeFromCodeCoverage]
+   
     public class Repository: IRepository
     {
         private TaskManagerEntities _db;
