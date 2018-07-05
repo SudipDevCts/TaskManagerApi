@@ -26,18 +26,18 @@ namespace TaskMaster.Tests
 
             taskId = new BusinessLayer.TaskManager().GetTasks().FirstOrDefault().TaskId;
         }
-        //[PerfBenchmark(Description = "Add task through put test.",
-        //NumberOfIterations = 500, RunMode = RunMode.Throughput,
-        //RunTimeMilliseconds = 1200, TestMode = TestMode.Measurement)]
-        //[CounterMeasurement("TestCounter")]
-        //[MemoryAssertion(MemoryMetric.TotalBytesAllocated, MustBe.LessThanOrEqualTo, ByteConstants.ThirtyTwoKb)]
-        //[GcTotalAssertion(GcMetric.TotalCollections, GcGeneration.Gen2, MustBe.ExactlyEqualTo, 0.0d)]
-        //public void AddTask()
-        //{
-        //    // Act on Test  
-        //    controller.AddTask(task);
-        //    _counter.Increment();
-        //}
+        [PerfBenchmark(Description = "Add task through put test.",
+        NumberOfIterations = 500, RunMode = RunMode.Throughput,
+        RunTimeMilliseconds = 1200, TestMode = TestMode.Measurement)]
+        [CounterMeasurement("TestCounter")]
+        [MemoryAssertion(MemoryMetric.TotalBytesAllocated, MustBe.LessThanOrEqualTo, ByteConstants.ThirtyTwoKb)]
+        [GcTotalAssertion(GcMetric.TotalCollections, GcGeneration.Gen2, MustBe.ExactlyEqualTo, 0.0d)]
+        public void AddTask()
+        {
+            // Act on Test  
+            controller.AddTask(task);
+            _counter.Increment();
+        }
 
         [PerfBenchmark(Description = "Get Specufic task.",
         NumberOfIterations = 500, RunMode = RunMode.Throughput,
